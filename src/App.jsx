@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X, Church, Clock3, MapPin, Phone, Users, Images, Cross, ChevronRight, CalendarDays, History, Navigation, BookOpen, UserRound, School, Mail, Newspaper, Search, Home, Heart, Info, Globe2, CalendarCheck } from 'lucide-react';
 
 const parish = {
@@ -12,6 +12,10 @@ const parish = {
   archive: 'https://ramadurgam.weebly.com/ramadurgam-church.html',
   map: 'https://www.google.com/maps/search/?api=1&query=Our+Lady+of+Assumption+Church+Ramadurgam+Andhra+Pradesh'
 };
+const heroSlides = [
+ { image: parish.image, alt: 'Our Lady of Assumption Church, Ramadurgam' },
+ { image: '/church-hill.jpg', alt: 'Historic church tower among the rocky hills' }
+];
 const massTimes = [['Sunday','07:30 AM – 09:00 AM'],['Monday','06:30 AM'],['Tuesday','06:30 AM'],['Wednesday','06:30 AM'],['Thursday','06:30 AM'],['Friday','06:30 AM'],['Saturday','06:30 AM']];
 const feasts = [{month:'AUG',day:'15',title:'The Assumption of the Blessed Virgin Mary',note:'Main parish feast'},{month:'JUL',day:'26',title:'Saints Anne and Joachim',note:'Special devotion'},{month:'DEC',day:'25',title:'Christmas',note:'The Nativity of Our Lord'}];
 const formerPriests = ['Fr. Jos Rajander','Fr. Goe Effer','Fr. M. Maximini','Fr. Ignatius','Fr. A. Doreyswamy','Fr. Ga Hermans','Fr. R.C. Paul','Fr. Gahanas','Fr. C. Thomas','Fr. P. Rayanna','Fr. S. Keet','Fr. Y. Schipper','Fr. Joseph','Fr. Staffhorest','Fr. Francis','Fr. Gerold Seariesbrick','Fr. Bede','Worhen','Fr. Cerigerneha','Fr. A. M. L. Pinto','Fr. Thomas Tharayil','Fr. Joannes Chrisostom','Fr. Anthony Kuttany','Fr. Y. Papaiah','Fr. Sebastian','Fr. K. Arulappa'];
@@ -31,6 +35,8 @@ function Section({title, icon: Icon=Church, action, children, id, className=''})
 }
 function App() {
  const [menuOpen,setMenuOpen]=useState(false);
+ const [activeSlide,setActiveSlide]=useState(0);
+ useEffect(()=>{ const timer=window.setInterval(()=>setActiveSlide(current=>(current+1)%heroSlides.length),4500); return ()=>window.clearInterval(timer); },[]);
  const [query,setQuery]=useState('');
  const [allPriests,setAllPriests]=useState(false);
  const [historyOpen,setHistoryOpen]=useState(false);
@@ -49,7 +55,7 @@ function App() {
    <nav className={'main-nav '+(menuOpen?'nav-open':'')}><div className="site-wrap nav-inner">{links.map(([label,href])=><a key={label} href={href} onClick={()=>setMenuOpen(false)}>{label}</a>)}<a className="nav-contact" href="#contact"><UserRound size={17}/> Contact</a></div></nav>
   </header>
   <main>
-   <section className="hero-section" id="parish"><div className="site-wrap hero-grid"><div className="hero-photo"><img src={parish.image} alt="Our Lady of Assumption Church, Ramadurgam"/><a href={parish.archive} target="_blank" rel="noreferrer" className="photo-next" aria-label="Open church photo archive"><ChevronRight size={26}/></a><span className="photo-dots"><i/><i/></span></div><div className="hero-copy"><p className="eyebrow">WELCOME TO OUR PARISH</p><h1>{parish.name}</h1><p className="hero-location"><MapPin size={17}/>{parish.place}</p><p className="hero-description">A parish community rooted in faith, prayer, education and service.</p><a className="gold-button" href="#history">Know History <ChevronRight size={16}/></a></div></div></section>
+   <section className="hero-section" id="parish"><div className="site-wrap hero-grid"><div className="hero-photo"><img key={heroSlides[activeSlide].image} src={heroSlides[activeSlide].image} alt={heroSlides[activeSlide].alt}/><button type="button" className="photo-next" onClick={()=>setActiveSlide(current=>(current+1)%heroSlides.length)} aria-label="Next church photo"><ChevronRight size={26}/></button><span className="photo-dots">{heroSlides.map((slide,index)=><button key={slide.image} type="button" className={index===activeSlide?"active":""} onClick={()=>setActiveSlide(index)} aria-label={`Show photo ${index+1}`}/>)}</span></div><div className="hero-copy"><p className="eyebrow">WELCOME TO OUR PARISH</p><h1>{parish.name}</h1><p className="hero-location"><MapPin size={17}/>{parish.place}</p><p className="hero-description">A parish community rooted in faith, prayer, education and service.</p><a className="gold-button" href="#history">Know History <ChevronRight size={16}/></a></div></div></section>
    <div className="notice-strip"><div className="site-wrap notice-inner"><span className="notice-label">NOTICE</span><p>For special services and feast-day programmes, please contact the parish to confirm the latest schedule.</p><a href="#contact">Contact parish <ChevronRight size={15}/></a></div></div>
    <div className="site-wrap page-content">
     <div className="top-content-grid">
