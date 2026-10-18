@@ -11,9 +11,10 @@ const galleryUrl = 'https://ramadurgam.weebly.com/ramadurgam-images.html';
 const mapUrl = 'https://www.google.com/maps/search/?api=1&query=Assumption+Church+Ramadurgam+Chippagiri+Kurnool+Andhra+Pradesh+518396';
 const phoneNumber = '9398505167';
 const navItems = [
-  ['Home', '#top'], ['History', '#history'], ['Administration', '#administration'],
-  ['Feast Days', '#feast-days'], ['Former Priests', '#priests'],
-  ['Parish Timings', '#mass'], ['Weekly Updates', '#updates'], ['Gallery', '#gallery']
+  ['History', '#history'], ['Administration', '#administration'], ['Feast Days', '#feast-days'],
+  ['Eparchial Priests', '#priests'], ['Former Priests', '#priests'], ['Kurishupalli', '#institutions'],
+  ['Chapels & Grotto', '#activities'], ['Church Undertakings', '#activities'],
+  ['Institutes', '#institutions'], ['Religious Houses', '#activities']
 ];
 const formerPriests = [
   ['Fr. Vermeulen', '1962–1976'], ['Fr. M. Anthaiah', '1966–1967'],
@@ -63,7 +64,7 @@ export default function App() {
         <div className="page-width hero-content"><div className="breadcrumb"><a href="#top"><Home size={13}/> Home</a><ChevronRight size={13}/><span>Parish</span></div><span className="eyebrow">DIOCESE OF KURNOOL · ESTABLISHED 1850</span><h1>Our Lady of Assumption<br/><em>Church, Ramadurgam</em></h1><p>A parish community rooted in faith, prayer and service, honouring Our Lady of Assumption and preserving generations of Christian heritage.</p><div className="hero-actions"><a className="primary-button" href="#mass">Holy Mass Timings <Clock3 size={15}/></a><a className="secondary-button" href={mapUrl} target="_blank" rel="noreferrer">Location Map <MapPin size={15}/></a></div></div>
         <div className="hero-caption"><Cross size={14}/> Faith · Hope · Community</div>
       </section>
-      <div className="section-nav"><div className="page-width section-nav-inner">{navItems.map(([label, href], i) => <a className={i === 0 ? 'selected' : ''} href={href} key={href}>{label}</a>)}</div></div>
+      <div className="section-nav"><div className="page-width section-nav-inner">{[['Parish','#top'],['Holy Mass','#mass'],['Updates','#updates'],['Obituary','#priests'],['Gallery','#gallery']].map(([label,href],i) => <a className={i === 0 ? 'selected' : ''} href={href} key={href}>{label}</a>)}</div></div>
       <div className="page-width content-layout">
         <div className="main-column">
           {noticeOpen && <section className="notice-banner"><span className="notice-symbol"><Bell size={19}/></span><div><strong>Welcome to Our Parish</strong><p>For announcements, sacramental schedules and any changes to Mass timings, please contact the parish directly.</p></div><button aria-label="Dismiss notice" onClick={() => setNoticeOpen(false)}><X size={16}/></button></section>}
