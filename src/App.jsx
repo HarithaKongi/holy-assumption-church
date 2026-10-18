@@ -6,7 +6,7 @@ const galleryUrl = 'https://ramadurgam.weebly.com/ramadurgam-church.html';
 const mapUrl = 'https://www.google.com/maps/search/?api=1&query=Our+Lady+of+Assumption+Church+Ramadurgam+Andhra+Pradesh';
 const churchImage = 'https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QPN3Cqnw6RsFQHW77ewXp2Z9wxb86Yox26QqSGPISACfaEhLeTqFS-EJtV71iWj7V7DEaJvu8x66wXW7XO_L_XIbZGh2NRUzezf85p28zpP4HbhQVRE4EGDmmB3iGwDWzV-pc=w1080-h715-k-no';
 const phoneNumber = '9398505167';
-const mainNav = [['History','#history'],['Administration','#administration'],['Feast Days','#feast-days'],['Eparchial Priests','#priests'],['Former Priests','#priests'],['Kurishupalli','#institutions'],['Chapels & Grotto','#activities'],['Church Undertakings','#activities'],['Institutes','#institutions'],['Religious Houses','#activities']];
+const mainNav = [['History','#history'],['Administration','#administration'],['Feast Days','#feast-days'],['Eparchial Priests','#eparchial-priests'],['Former Priests','#priests'],['Kurishupalli','#institutions'],['Chapels & Grotto','#activities'],['Church Undertakings','#activities'],['Institutes','#institutions'],['Religious Houses','#activities']];
 const formerPriests = ['Fr. Jos Rajander','Fr. Goe Effer','Fr. M. Maximini','Fr. Ignatius','Fr. A. Doreyswamy','Fr. Ga Hermans','Fr. R.C. Paul','Fr. Gahanas','Fr. C. Thomas','Fr. P. Rayanna','Fr. S. Keet','Fr. Y. Schipper','Fr. Joseph','Fr. Staffhorest','Fr. Francis','Fr. Gerold Seariesbrick','Fr. Bede','Worhen','Fr. Cerigerneha','Fr. A. M. L. Pinto','Fr. Thomas Tharayil','Fr. Joannes Chrisostom','Fr. Anthony Kuttany','Fr. Y. Papaiah','Fr. Sebastian','Fr. K. Arulappa'];
 const historyMilestones = [
  ['1780','Ramadurgam is mentioned in the Goan register with a church dedicated to St. Anne.'],
