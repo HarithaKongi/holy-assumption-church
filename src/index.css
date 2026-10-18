@@ -354,3 +354,21 @@ a:focus-visible, button:focus-visible { outline: 2px solid #38bdf8; outline-offs
  .ref-gallery>a:first-child img { height:170px; }
  .ref-admin-grid,.ref-priest-list { grid-template-columns:1fr; }
 }
+
+/* Directory controls styled to match the reference parish portal. */
+.ref-directory-label{display:block;margin:0 0 7px;color:#667782;font-size:11px}
+.ref-directory-search{display:flex;gap:0;border:1px solid #dfe6ea;background:#fff}
+.ref-directory-search input{min-width:0;flex:1;border:0;outline:0;padding:11px 12px;color:#405563;font:inherit;font-size:12px}
+.ref-directory-search input:focus{box-shadow:inset 0 0 0 1px #38bdf8}
+.ref-directory-search button{width:42px;border:0;background:#0284c7;color:#fff;display:grid;place-items:center;cursor:pointer}
+.ref-directory-results{margin-top:8px;border:1px solid #e5eaed}
+.ref-directory-results a{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;border-bottom:1px solid #edf0f2;color:#465963;font-size:11px}
+.ref-directory-results a:last-child{border-bottom:0}
+.ref-directory-results a:hover{background:#f1faff;color:#0284c7}
+.ref-directory-results svg{color:#0284c7;flex:none}
+.ref-panel[id="eparchial-priests"],.ref-panel[id="former-assistant-priests"],.ref-panel[id="diocese-news"],.ref-panel[id="events"],.ref-panel[id="priest-obituary"]{scroll-margin-top:110px}
+.ref-banner-title>a:hover,.ref-contact>a:hover,.ref-directory-search button:hover{background:#0284c7;color:#fff}
+@media(max-width:760px){
+ .ref-header-actions.open{flex-direction:column}
+ .ref-directory-search input{font-size:16px}
+}
