@@ -63,3 +63,120 @@ body{font-family:'Roboto',Arial,sans-serif;background:#f5f6f8;color:#343a40}
 .directions-button:hover,.main-nav .find-button:hover{background:#0369a1}
 .feast-symbol{color:#0284c7;border-color:#7dd3fc}
 a:focus-visible,button:focus-visible{outline-color:#38bdf8}
+
+
+/* Reference-layout refinement: traditional parish portal, flatter cards, and sky-blue accents */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Rubik:wght@400;500;600&display=swap');
+:root {
+  font-family: 'Poppins', Arial, sans-serif;
+  color: #343a40;
+  background: #fff;
+  --blue: #168acb;
+  --deep: #126da0;
+  --navy: #173b59;
+  --gold: #38bdf8;
+  --ink: #343a40;
+  --muted: #6c757d;
+  --line: #e5e9ed;
+  --surface: #fff;
+}
+body { background: #fff; font-family: 'Poppins', Arial, sans-serif; color: #343a40; }
+.page-width { width: min(1140px, 94%); }
+.utility-bar { background: #126da0; color: #fff; }
+.utility-inner { min-height: 30px; font-size: 11px; }
+.utility-inner svg { color: #bae6fd; }
+.site-header { box-shadow: none; border-bottom: 1px solid #e5e9ed; position: relative; }
+.header-inner { min-height: 72px; }
+.brand { color: #155b88; }
+.brand-mark { border-radius: 3px; background: #f0f9ff; border-color: #bae6fd; color: #0284c7; }
+.brand-copy strong { font-family: 'Rubik', sans-serif; letter-spacing: .15px; }
+.brand-copy small { color: #6c757d; letter-spacing: .7px; }
+.main-nav { gap: 12px; }
+.main-nav a { font-size: 11px; font-weight: 500; color: #3e4d58; }
+.main-nav a:hover { color: #0284c7; }
+.main-nav .find-button { border-radius: 2px; background: #0284c7; color: white; padding: 9px 11px; }
+.hero { min-height: 330px; border-radius: 0; }
+.hero > img { filter: saturate(.82); }
+.hero-overlay { background: linear-gradient(90deg,rgba(11,38,58,.78),rgba(11,38,58,.42) 55%,rgba(11,38,58,.16)); }
+.hero-content { padding-top: 44px; padding-bottom: 52px; }
+.hero-content h1 { font-family: 'Rubik', sans-serif; font-size: clamp(28px,3.4vw,42px); font-weight: 600; line-height: 1.2; }
+.hero-content h1 em { color: #7dd3fc; font-style: normal; }
+.hero-content p { max-width: 650px; font-size: 13px; line-height: 1.8; }
+.eyebrow { color: #7dd3fc; letter-spacing: 1.4px; }
+.hero-actions a { border-radius: 2px; box-shadow: none; }
+.primary-button { background: #38bdf8; color: #083344; }
+.secondary-button { border-radius: 2px; }
+.hero-caption { color: #fff; }
+.section-nav { background: #f6f8fa; border-bottom: 1px solid #dfe5e9; }
+.section-nav-inner { gap: 0; justify-content: flex-start; overflow-x: auto; }
+.section-nav a { padding: 13px 17px; border-right: 1px solid #e5e9ed; border-radius: 0; font-size: 12px; white-space: nowrap; }
+.section-nav a.selected { color: #0284c7; background: #fff; }
+.section-nav a.selected:after { height: 3px; background: #38bdf8; }
+.content-layout { gap: 24px; padding-top: 24px; padding-bottom: 38px; align-items: start; }
+.content-card, .notice-banner, .feast-card { border-radius: 2px; box-shadow: none; border: 1px solid #e2e7eb; }
+.content-card { padding: 20px; margin-bottom: 20px; }
+.section-title { border-bottom: 1px solid #e5e9ed; padding-bottom: 12px; margin-bottom: 15px; gap: 10px; }
+.section-title h2 { font-family: 'Rubik', sans-serif; font-size: 19px; color: #185c88; font-weight: 500; }
+.section-icon { background: #eaf7ff; border: 1px solid #c5eaff; color: #0284c7; border-radius: 2px; }
+.section-title > a, .inline-link { color: #0284c7; font-size: 11px; }
+.section-intro { color: #697984; font-size: 12px; line-height: 1.8; }
+.schedule-table { border: 1px solid #e2e7eb; border-radius: 2px; overflow: hidden; }
+.schedule-row { min-height: 41px; padding: 10px 13px; font-size: 12px; border-bottom: 1px solid #e9edf0; }
+.schedule-heading { background: #f2f7fa; color: #185c88; text-transform: none; font-weight: 600; }
+.schedule-row strong { color: #343a40; font-weight: 500; }
+.info-note { background: #f2f9fd; border-left: 3px solid #38bdf8; color: #5b6c76; font-size: 11px; }
+.notice-banner { background: #f3faff; border-left: 3px solid #38bdf8; }
+.notice-banner strong { color: #185c88; }
+.history-layout { gap: 18px; }
+.history-image { border-radius: 2px; background: #f1f6f8; }
+.history-image img { border-radius: 2px; }
+.history-image > span { font-size: 11px; }
+.history-text p, .timeline-item p { font-size: 12px; line-height: 1.85; color: #4f5f68; }
+.timeline-item strong { color: #0284c7; }
+.priest-profile { background: #f6fafd; border: 1px solid #e3edf3; border-radius: 2px; }
+.priest-avatar { background: #e6f6ff; color: #0284c7; border-radius: 2px; }
+.priest-profile h3 { font-family: 'Rubik', sans-serif; font-size: 17px; color: #185c88; }
+.details-grid { gap: 10px; }
+.detail { border-radius: 2px; background: #fff; }
+.detail-icon { background: #eef8fd; color: #0284c7; border-radius: 2px; }
+.detail small { font-size: 10px; text-transform: uppercase; letter-spacing: .35px; }
+.detail strong { font-size: 12px; font-weight: 600; color: #374957; }
+.update-item { border-radius: 2px; border: 1px solid #e5e9ed; padding: 13px; }
+.update-item h3 { font-family: 'Rubik', sans-serif; color: #185c88; font-size: 14px; }
+.update-item p { font-size: 12px; line-height: 1.7; }
+.expand-button { border-radius: 2px; background: #f3f8fb; color: #185c88; }
+.priests-list > div { border-radius: 0; border-bottom: 1px solid #e5e9ed; }
+.priests-list strong { color: #344b5a; }
+.priests-list span { color: #6c757d; }
+.gallery-layout { gap: 10px; }
+.gallery-feature, .gallery-tile { border-radius: 2px; }
+.gallery-tile { background: #f5f9fb; color: #185c88; }
+.stats-card .detail { border-bottom: 1px solid #e8edf0; padding: 10px 0; }
+.community-card > a { border-radius: 0; border-bottom: 1px solid #e8edf0; padding: 11px 0; font-size: 12px; color: #405563; }
+.community-card > a svg:first-child { color: #0284c7; }
+.contact-address { font-size: 12px; }
+.directions-button { border-radius: 2px; background: #0284c7; }
+.feast-card { background: #f4faff; color: #334b5a; }
+.feast-card h3 { font-family: 'Rubik', sans-serif; color: #185c88; }
+.feast-card > small { color: #0284c7; }
+.feast-date { border-bottom: 1px solid #dcebf4; }
+.feast-date strong { color: #0284c7; }
+.site-footer { background: #173b59; }
+.footer-brand { color: #fff; }
+.footer-brand .brand-copy small { color: #c7d7e2; }
+.footer-bottom { border-top-color: #37586f; }
+.footer-bottom a, .footer-location { color: #7dd3fc; }
+a:focus-visible, button:focus-visible { outline: 2px solid #38bdf8; outline-offset: 3px; }
+@media (max-width: 980px) {
+  .main-nav { gap: 7px; }
+  .main-nav a { font-size: 10px; }
+}
+@media (max-width: 760px) {
+  .header-inner { min-height: 68px; }
+  .main-nav { background: #fff; border: 1px solid #e1e8ed; box-shadow: 0 8px 20px #123a5014; }
+  .main-nav a { font-size: 12px; }
+  .hero { min-height: 360px; }
+  .hero-content { padding-top: 35px; padding-bottom: 42px; }
+  .section-nav a { padding: 12px 14px; }
+  .content-card { padding: 15px; }
+}
