@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import churchHill from '../church-hill.jpg';
+import churchTower from '../church-tower.jpg';
 import { Menu, X, Church, Clock3, MapPin, Phone, Users, Images, Cross, ChevronRight, CalendarDays, History, Navigation, BookOpen, UserRound, School, Mail, Newspaper, Search, Home, Heart, Info, Globe2, CalendarCheck } from 'lucide-react';
 
 const parish = {
@@ -13,8 +15,8 @@ const parish = {
   map: 'https://www.google.com/maps/search/?api=1&query=Our+Lady+of+Assumption+Church+Ramadurgam+Andhra+Pradesh'
 };
 const heroSlides = [
- { image: '/church-hill.jpg', alt: 'Our Lady of Assumption Church tower among the rocky hills of Ramadurgam' },
- { image: '/church-tower.jpg', alt: 'Aerial view of Our Lady of Assumption Church and Ramadurgam village' }
+ { image: churchHill, alt: 'Our Lady of Assumption Church tower among the rocky hills of Ramadurgam' },
+ { image: churchTower, alt: 'Aerial view of Our Lady of Assumption Church and Ramadurgam village' }
 ];
 const massTimes = [['Sunday','07:30 AM – 09:00 AM'],['Monday','06:30 AM'],['Tuesday','06:30 AM'],['Wednesday','06:30 AM'],['Thursday','06:30 AM'],['Friday','06:30 AM'],['Saturday','06:30 AM']];
 const feasts = [{month:'AUG',day:'15',title:'The Assumption of the Blessed Virgin Mary',note:'Main parish feast'},{month:'JUL',day:'26',title:'Saints Anne and Joachim',note:'Special devotion'},{month:'DEC',day:'25',title:'Christmas',note:'The Nativity of Our Lord'}];
