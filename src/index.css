@@ -346,3 +346,37 @@ p { color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+
+/* Events: use an honest empty state until confirmed parish announcements are available. */
+.events-section { background: var(--paper); }
+.events-empty { display: flex; align-items: flex-start; gap: 22px; max-width: 900px; padding: 30px; border: 1px solid var(--line); border-left: 3px solid var(--gold); background: #fffefa; }
+.events-empty-icon { display: grid; width: 48px; height: 48px; flex: 0 0 auto; place-items: center; color: #9c7a42; background: #f2eadb; border-radius: 50%; }
+.events-empty h3 { margin: 2px 0 8px; color: var(--navy); font-family: var(--serif); font-size: 23px; }
+.events-empty p { max-width: 690px; margin-bottom: 14px; font-size: 13px; line-height: 1.85; }
+.sacraments-section { background: #f0ebe1; }
+.sacrament-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid #ddd4c4; border-left: 1px solid #ddd4c4; }
+.sacrament-item { min-height: 215px; padding: 27px 25px; border-right: 1px solid #ddd4c4; border-bottom: 1px solid #ddd4c4; background: rgba(255,254,250,.55); }
+.sacrament-symbol { display: grid; width: 43px; height: 43px; margin-bottom: 17px; place-items: center; color: #9c7a42; border: 1px solid #d9c8a8; border-radius: 50%; }
+.sacrament-item h3 { margin: 0 0 9px; color: var(--navy); font-family: var(--serif); font-size: 21px; line-height: 1.35; }
+.sacrament-item p { margin: 0; font-size: 12px; line-height: 1.85; }
+.gallery-open { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.gallery-open:focus-visible { outline-offset: -5px; }
+.gallery-open img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.gallery-item:hover .gallery-open img { transform: scale(1.045); }
+.gallery-hint { margin: 16px 0 0; font-size: 11px; }
+.photo-lightbox { position: fixed; z-index: 100; inset: 0; display: flex; align-items: center; justify-content: center; padding: 54px 24px 24px; background: rgba(5, 17, 28, .94); }
+.lightbox-close { position: absolute; top: 18px; right: 20px; display: grid; width: 44px; height: 44px; place-items: center; color: white; border: 1px solid rgba(255,255,255,.35); background: transparent; cursor: pointer; }
+.lightbox-figure { display: flex; max-width: min(1100px, 100%); max-height: 100%; flex-direction: column; align-items: center; gap: 13px; margin: 0; }
+.lightbox-figure img { max-width: 100%; max-height: calc(100vh - 120px); width: auto; height: auto; object-fit: contain; }
+.lightbox-figure figcaption { color: #f1e4c9; font-size: 12px; text-align: center; }
+@media (max-width: 900px) {
+  .sacrament-grid { grid-template-columns: 1fr; }
+  .sacrament-item { min-height: 0; padding: 22px; }
+}
+@media (max-width: 640px) {
+  .events-empty { flex-direction: column; gap: 15px; padding: 22px 18px; }
+  .events-empty h3 { font-size: 21px; }
+  .photo-lightbox { padding: 60px 12px 18px; }
+  .lightbox-close { top: 10px; right: 10px; }
+}
