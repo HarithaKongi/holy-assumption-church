@@ -13,10 +13,8 @@ const parish = {
   map: 'https://www.google.com/maps/search/?api=1&query=Our+Lady+of+Assumption+Church+Ramadurgam+Andhra+Pradesh'
 };
 const heroSlides = [
- { image: '/history/1654392.jpg', alt: 'Historic church and surrounding landscape of Ramadurgam' },
- { image: '/history/1995543.jpg', alt: 'Historical photograph from the Ramadurgam parish archive' },
- { image: '/history/2091324.jpg', alt: 'Historical parish photograph from Ramadurgam' },
- { image: '/history/2451125.jpg', alt: 'Historic view from the Our Lady of Assumption Church parish archive' }
+ { image: '/church-hill.jpg', alt: 'Our Lady of Assumption Church tower among the rocky hills of Ramadurgam' },
+ { image: '/church-tower.jpg', alt: 'Aerial view of Our Lady of Assumption Church and Ramadurgam village' }
 ];
 const massTimes = [['Sunday','07:30 AM – 09:00 AM'],['Monday','06:30 AM'],['Tuesday','06:30 AM'],['Wednesday','06:30 AM'],['Thursday','06:30 AM'],['Friday','06:30 AM'],['Saturday','06:30 AM']];
 const feasts = [{month:'AUG',day:'15',title:'The Assumption of the Blessed Virgin Mary',note:'Main parish feast'},{month:'JUL',day:'26',title:'Saints Anne and Joachim',note:'Special devotion'},{month:'DEC',day:'25',title:'Christmas',note:'The Nativity of Our Lord'}];
