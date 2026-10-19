@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://holy-assumption-church.vercel.app/sitemap.xml
