@@ -317,3 +317,32 @@ p { color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+
+/* Quick parish links inspired by clear, task-first parish navigation. */
+.quick-access { position: relative; z-index: 2; background: var(--paper); border-bottom: 1px solid var(--line); }
+.quick-access-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.quick-access-card { display: flex; min-width: 0; min-height: 102px; align-items: center; gap: 13px; padding: 20px 18px; border-right: 1px solid var(--line); transition: background .2s ease; }
+.quick-access-card:first-child { border-left: 1px solid var(--line); }
+.quick-access-card:hover { background: #f7f2e8; }
+.quick-access-icon { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; color: #9c7a42; background: #f2eadb; border-radius: 50%; }
+.quick-access-card > span:nth-child(2) { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 3px; }
+.quick-access-card strong { color: var(--navy); font-size: 12px; font-weight: 600; }
+.quick-access-card small { color: var(--muted); font-size: 10px; line-height: 1.5; }
+.quick-access-card > svg { flex: 0 0 auto; color: #a17e43; }
+@media (max-width: 900px) {
+  .quick-access-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quick-access-card:nth-child(3) { border-left: 1px solid var(--line); }
+  .quick-access-card:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 480px) {
+  .quick-access-card { min-height: 88px; gap: 9px; padding: 14px 10px; }
+  .quick-access-icon { width: 34px; height: 34px; }
+  .quick-access-icon svg { width: 17px; }
+  .quick-access-card strong { font-size: 11px; }
+  .quick-access-card small { font-size: 9px; }
+  .quick-access-card > svg { width: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
