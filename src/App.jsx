@@ -184,6 +184,31 @@ function App() {
           <a className="hero-scroll" href="#parish"><span>SCROLL TO EXPLORE</span><ArrowDown size={15} aria-hidden="true" /></a>
         </section>
 
+        <section className="quick-access" aria-label="Quick parish links">
+          <div className="container quick-access-grid">
+            <a className="quick-access-card" href="#mass">
+              <span className="quick-access-icon"><Clock3 size={20} aria-hidden="true" /></span>
+              <span><strong>Mass timings</strong><small>Plan your visit</small></span>
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+            <a className="quick-access-card" href="#history">
+              <span className="quick-access-icon"><BookOpen size={20} aria-hidden="true" /></span>
+              <span><strong>Our history</strong><small>Discover our heritage</small></span>
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+            <a className="quick-access-card" href="#feasts">
+              <span className="quick-access-icon"><CalendarDays size={20} aria-hidden="true" /></span>
+              <span><strong>Feast days</strong><small>Parish traditions</small></span>
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+            <a className="quick-access-card" href={parish.map} target="_blank" rel="noreferrer">
+              <span className="quick-access-icon"><MapPin size={20} aria-hidden="true" /></span>
+              <span><strong>Find our church</strong><small>Get directions</small></span>
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+
         <section className="intro-section section-pad" id="parish">
           <div className="container intro-grid">
             <div className="intro-copy">
