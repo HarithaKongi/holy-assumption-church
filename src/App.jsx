@@ -66,8 +66,7 @@ const navigation = [
   { label: 'Our Parish', href: '#parish' },
   { label: 'Mass Timings', href: '#mass' },
   { label: 'Our History', href: '#history' },
-  { label: 'Events', href: '#events' },
-  { label: 'Sacraments', href: '#sacraments' },
+  { label: 'Parish Life', href: '#events' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '#contact' }
 ];
@@ -291,7 +290,11 @@ function App() {
               <div>
                 <h3>No event announcements published yet</h3>
                 <p>We do not have a verified list of upcoming parish events to display at the moment. Please contact the parish office before making plans for a celebration or special service.</p>
-                <a className="text-link" href={'tel:' + parish.phone}>Ask the parish office <ArrowUpRight size={15} aria-hidden="true" /></a>
+                <div className="events-empty-links">
+                  <a className="text-link" href={'tel:' + parish.phone}>Ask the parish office <ArrowUpRight size={15} aria-hidden="true" /></a>
+                  <a className="text-link" href="#feasts">Explore feast days <ArrowUpRight size={15} aria-hidden="true" /></a>
+                  <a className="text-link" href="#sacraments">Sacraments & pastoral care <ArrowUpRight size={15} aria-hidden="true" /></a>
+                </div>
               </div>
             </div>
           </div>
@@ -395,7 +398,7 @@ function App() {
       </footer>
       {selectedPhoto && (
         <div className="photo-lightbox" role="dialog" aria-modal="true" aria-label={selectedPhoto.alt} onClick={(event) => { if (event.target === event.currentTarget) setSelectedPhoto(null); }}>
-          <button className="lightbox-close" type="button" onClick={() => setSelectedPhoto(null)} aria-label="Close photograph viewer"><X size={23} aria-hidden="true" /></button>
+          <button className="lightbox-close" type="button" autoFocus onClick={() => setSelectedPhoto(null)} aria-label="Close photograph viewer"><X size={23} aria-hidden="true" /></button>
           <figure className="lightbox-figure">
             <img src={selectedPhoto.src} alt={selectedPhoto.alt} />
             <figcaption>{selectedPhoto.label}</figcaption>
