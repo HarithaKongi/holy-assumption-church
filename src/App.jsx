@@ -18,8 +18,8 @@ const parish = {
 };
 
 const photographs = [
-  { src: '/church-hill.jpg', alt: 'Our Lady of Assumption Church set among the rocky hills of Ramadurgam', label: 'A place of faith' },
   { src: '/church-tower.jpg', alt: 'Church tower and the surrounding Ramadurgam landscape', label: 'A landmark of Ramadurgam' },
+  { src: '/church-hill.jpg', alt: 'Our Lady of Assumption Church set among the rocky hills of Ramadurgam', label: 'A place of faith' },
   { src: '/church-view.jpg', alt: 'View of the historic church tower above Ramadurgam', label: 'Faith through generations' }
 ];
 
