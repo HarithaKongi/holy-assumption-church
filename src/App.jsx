@@ -66,7 +66,8 @@ const navigation = [
   { label: 'Our Parish', href: '#parish' },
   { label: 'Mass Timings', href: '#mass' },
   { label: 'Our History', href: '#history' },
-  { label: 'Feast Days', href: '#feasts' },
+  { label: 'Events', href: '#events' },
+  { label: 'Sacraments', href: '#sacraments' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '#contact' }
 ];
@@ -90,13 +91,25 @@ function App() {
   const [priestQuery, setPriestQuery] = useState('');
   const [showAllPriests, setShowAllPriests] = useState(false);
   const [showFullHistory, setShowFullHistory] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return undefined;
     const timer = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % photographs.length);
     }, 6500);
     return () => window.clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (!selectedPhoto) return undefined;
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setSelectedPhoto(null);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [selectedPhoto]);
 
   useEffect(() => {
     if (!menuOpen) return undefined;
@@ -270,6 +283,20 @@ function App() {
           </div>
         </section>
 
+        <section className="events-section section-pad" id="events">
+          <div className="container">
+            <SectionHeading eyebrow="PARISH LIFE" title="Events & announcements" description="Updates about parish celebrations belong here. Contact the parish office for the latest confirmed dates and timings." icon={CalendarDays} />
+            <div className="events-empty">
+              <span className="events-empty-icon"><CalendarDays size={24} aria-hidden="true" /></span>
+              <div>
+                <h3>No event announcements published yet</h3>
+                <p>We do not have a verified list of upcoming parish events to display at the moment. Please contact the parish office before making plans for a celebration or special service.</p>
+                <a className="text-link" href={'tel:' + parish.phone}>Ask the parish office <ArrowUpRight size={15} aria-hidden="true" /></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="feasts-section section-pad" id="feasts">
           <div className="container">
             <SectionHeading eyebrow="OUR PARISH CALENDAR" title="Days we hold dear" description="Feast days and celebrations that are part of our parish tradition." icon={CalendarDays} />
@@ -286,17 +313,44 @@ function App() {
           </div>
         </section>
 
+        <section className="sacraments-section section-pad" id="sacraments">
+          <div className="container">
+            <SectionHeading eyebrow="PASTORAL CARE" title="Faith at every stage of life" description="For information about sacramental preparation and pastoral support, contact the parish office to confirm what is available and how to arrange it." icon={Heart} />
+            <div className="sacrament-grid">
+              <article className="sacrament-item">
+                <span className="sacrament-symbol"><Cross size={21} aria-hidden="true" /></span>
+                <h3>Baptism & First Communion</h3>
+                <p>Ask the parish office about preparation, documentation and available dates.</p>
+              </article>
+              <article className="sacrament-item">
+                <span className="sacrament-symbol"><Church size={21} aria-hidden="true" /></span>
+                <h3>Marriage & family life</h3>
+                <p>Contact the parish office for guidance on marriage preparation and parish procedures.</p>
+              </article>
+              <article className="sacrament-item">
+                <span className="sacrament-symbol"><Heart size={21} aria-hidden="true" /></span>
+                <h3>Prayer & pastoral care</h3>
+                <p>For confession, anointing of the sick, or other pastoral needs, please ask the parish office about arrangements.</p>
+              </article>
+            </div>
+            <p className="source-note">These are enquiry topics, not a published schedule or guarantee of availability. Please confirm details directly with the parish.</p>
+          </div>
+        </section>
+
         <section className="gallery-section section-pad" id="gallery">
           <div className="container">
             <SectionHeading eyebrow="A GLIMPSE OF OUR HOME" title="The church & its surroundings" description="A few views of Our Lady of Assumption Church and the landscape of Ramadurgam." icon={Images} />
             <div className="gallery-grid">
               {photographs.map((photo, index) => (
                 <figure className={'gallery-item gallery-item-' + (index + 1)} key={photo.src}>
-                  <img src={photo.src} alt={photo.alt} loading="lazy" />
+                  <button className="gallery-open" type="button" onClick={() => setSelectedPhoto(photo)} aria-label={'View larger photograph: ' + photo.alt}>
+                    <img src={photo.src} alt={photo.alt} loading="lazy" />
+                  </button>
                   <figcaption><span>0{index + 1}</span>{photo.label}</figcaption>
                 </figure>
               ))}
             </div>
+            <p className="gallery-hint">Select a photograph to view it larger. The gallery uses the three designated church photographs only.</p>
           </div>
         </section>
 
@@ -339,6 +393,15 @@ function App() {
         </div>
         <div className="container footer-bottom"><span>© {new Date().getFullYear()} Our Lady of Assumption Church, Ramadurgam</span><span>Faith · Heritage · Community</span></div>
       </footer>
+      {selectedPhoto && (
+        <div className="photo-lightbox" role="dialog" aria-modal="true" aria-label={selectedPhoto.alt} onClick={(event) => { if (event.target === event.currentTarget) setSelectedPhoto(null); }}>
+          <button className="lightbox-close" type="button" onClick={() => setSelectedPhoto(null)} aria-label="Close photograph viewer"><X size={23} aria-hidden="true" /></button>
+          <figure className="lightbox-figure">
+            <img src={selectedPhoto.src} alt={selectedPhoto.alt} />
+            <figcaption>{selectedPhoto.label}</figcaption>
+          </figure>
+        </div>
+      )}
     </div>
   );
 }
