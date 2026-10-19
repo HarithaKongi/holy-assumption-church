@@ -31,13 +31,13 @@ The site uses parish details and historical notes already present in the project
 
 ## Church photographs
 
-The home-page carousel and gallery use the existing root-level image files:
+The homepage carousel and gallery use the designated assets in `public/`:
 
-- `public/church-hill.jpg` (or root-served `/church-hill.jpg`)
-- `public/church-tower.jpg` (or root-served `/church-tower.jpg`)
-- `public/church-view.jpg` (or root-served `/church-view.jpg`)
+- `public/church-tower.jpg` — first carousel slide
+- `public/church-hill.jpg`
+- `public/church-view.jpg`
 
-Keep these files at the project root if the current Vite setup serves them there, or move them to `public/` and keep the same URL paths.
+The original image files at the repository root are preserved. Historical images remain in `public/history/` and are not used in the homepage carousel or main church gallery.
 
 ## Accessibility and responsive design
 
@@ -45,7 +45,9 @@ Keep these files at the project root if the current Vite setup serves them there
 - Keyboard-accessible menu and carousel controls
 - Visible focus indicators
 - Searchable former-priest list
-- Reduced-motion preference support
+- Reduced-motion-aware carousel behavior
+- Keyboard-accessible photo lightbox with Escape-to-close
+- Responsive events and pastoral-information sections
 - Mobile, tablet and desktop layouts
 
 ## Items to verify
@@ -53,6 +55,7 @@ Keep these files at the project root if the current Vite setup serves them there
 - Confirm current Holy Mass timings and parish contact number.
 - Verify historical timeline entries and former-priest name spellings.
 - Add official parish event announcements only when confirmed.
+- Confirm that the deployed site reflects the latest `main` commit.
 - Confirm whether the existing parish archive URL remains authoritative.
 
 ## License
