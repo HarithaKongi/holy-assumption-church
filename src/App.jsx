@@ -1,89 +1,321 @@
 import { useEffect, useState } from 'react';
-const churchHill = 'https://raw.githubusercontent.com/HarithaKongi/holy-assumption-church/main/church-hill.jpg';
-const churchTower = 'https://raw.githubusercontent.com/HarithaKongi/holy-assumption-church/main/church-tower.jpg';
-import { Menu, X, Church, Clock3, MapPin, Phone, Users, Images, Cross, ChevronRight, CalendarDays, History, Navigation, BookOpen, UserRound, School, Mail, Newspaper, Search, Home, Heart, Info, Globe2, CalendarCheck } from 'lucide-react';
+import {
+  ArrowDown, ArrowUpRight, BookOpen, CalendarDays, Check, ChevronLeft,
+  ChevronRight, Church, Clock3, Compass, Cross, ExternalLink, Heart,
+  History as HistoryIcon, Images, MapPin, Menu, Phone, Search, X
+} from 'lucide-react';
 
 const parish = {
   name: 'Our Lady of Assumption Church',
+  shortName: 'Our Lady of Assumption',
   place: 'Ramadurgam, Andhra Pradesh',
   diocese: 'Diocese of Kurnool',
   priest: 'Rev. Fr. Gallela Vijay',
   phone: '9398505167',
   established: '1850',
-  image: 'https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QPN3Cqnw6RsFQHW77ewXp2Z9wxb86Yox26QqSGPISACfaEhLeTqFS-EJtV71iWj7V7DEaJvu8x66wXW7XO_L_XIbZGh2NRUzezf85p28zpP4HbhQVRE4EGDmmB3iGwDWzV-pc=w1080-h715-k-no',
   archive: 'https://ramadurgam.weebly.com/ramadurgam-church.html',
   map: 'https://www.google.com/maps/search/?api=1&query=Our+Lady+of+Assumption+Church+Ramadurgam+Andhra+Pradesh'
 };
-const churchView = 'https://raw.githubusercontent.com/HarithaKongi/holy-assumption-church/main/church-view.jpg';
-const heroSlides = [
- { image: churchHill, alt: 'Our Lady of Assumption Church tower among the rocky hills of Ramadurgam' },
- { image: churchTower, alt: 'Aerial view of Our Lady of Assumption Church and Ramadurgam village' },
- { image: churchView, alt: 'Historic view of the church tower rising above Ramadurgam' }
+
+const photographs = [
+  { src: '/church-hill.jpg', alt: 'Our Lady of Assumption Church set among the rocky hills of Ramadurgam', label: 'A place of faith' },
+  { src: '/church-tower.jpg', alt: 'Church tower and the surrounding Ramadurgam landscape', label: 'A landmark of Ramadurgam' },
+  { src: '/church-view.jpg', alt: 'View of the historic church tower above Ramadurgam', label: 'Faith through generations' }
 ];
-const massTimes = [['Sunday','07:30 AM – 09:00 AM'],['Monday','06:30 AM'],['Tuesday','06:30 AM'],['Wednesday','06:30 AM'],['Thursday','06:30 AM'],['Friday','06:30 AM'],['Saturday','06:30 AM']];
-const feasts = [{month:'AUG',day:'15',title:'The Assumption of the Blessed Virgin Mary',note:'Main parish feast'},{month:'JUL',day:'26',title:'Saints Anne and Joachim',note:'Special devotion'},{month:'DEC',day:'25',title:'Christmas',note:'The Nativity of Our Lord'}];
-const formerPriests = ['Fr. Jos Rajander','Fr. Goe Effer','Fr. M. Maximini','Fr. Ignatius','Fr. A. Doreyswamy','Fr. Ga Hermans','Fr. R.C. Paul','Fr. Gahanas','Fr. C. Thomas','Fr. P. Rayanna','Fr. S. Keet','Fr. Y. Schipper','Fr. Joseph','Fr. Staffhorest','Fr. Francis','Fr. Gerold Seariesbrick','Fr. Bede','Worhen','Fr. Cerigerneha','Fr. A. M. L. Pinto','Fr. Thomas Tharayil','Fr. Joannes Chrisostom','Fr. Anthony Kuttany','Fr. Y. Papaiah','Fr. Sebastian','Fr. K. Arulappa'];
-const history = [
- ['1780','Ramadurgam is mentioned in the Goan register with a church dedicated to St. Anne.'],
- ['1853','The supplied historical account records Fr. Francis Xavier Rodrigues travelling from Ramadurgam to Mudgal.'],
- ['1861','The account gives 1861 as the date on the grave of Fr. Francis Xavier Rodrigues.'],
- ['1886','A document in the Bellary Diocesan archives recorded the traditional account of the beginnings of Christianity in Ramadurgam.'],
- ['1895–1906','Fr. C. Thomas, a native of Ramadurgam, served as priest and later retired in the village.'],
- ['1930','St. Paul’s RCM TM School is recorded among the parish institutions.'],
- ['1972','According to the supplied account, Fr. Vermeulen built the present church.'],
- ['14 Sep 1994','Bishop Johannes erected the Cross on the hill.'],
- ['1996','Fathima Convent (FC) was established.']
+
+const massTimes = [
+  ['Sunday', '07:30 AM – 09:00 AM'],
+  ['Monday', '06:30 AM'],
+  ['Tuesday', '06:30 AM'],
+  ['Wednesday', '06:30 AM'],
+  ['Thursday', '06:30 AM'],
+  ['Friday', '06:30 AM'],
+  ['Saturday', '06:30 AM']
 ];
-function Section({title, icon: Icon=Church, action, children, id, className=''}) {
- return <section className={'site-section '+className} id={id}><div className="section-heading"><span className="section-icon"><Icon size={19}/></span><h2>{title}</h2>{action&&<a href={action.href}>{action.label}<ChevronRight size={15}/></a>}</div><div className="section-body">{children}</div></section>;
+
+const feastDays = [
+  { month: 'AUG', day: '15', title: 'The Assumption of the Blessed Virgin Mary', note: 'Main parish feast' },
+  { month: 'JUL', day: '26', title: 'Saints Anne and Joachim', note: 'Special devotion' },
+  { month: 'DEC', day: '25', title: 'Christmas', note: 'The Nativity of Our Lord' }
+];
+
+const timeline = [
+  { year: '1780', text: 'Ramadurgam is mentioned in the Goan register with a church dedicated to St. Anne.' },
+  { year: '1853', text: 'The historical account records Fr. Francis Xavier Rodrigues travelling from Ramadurgam to Mudgal.' },
+  { year: '1861', text: 'The account gives 1861 as the date on the grave of Fr. Francis Xavier Rodrigues.' },
+  { year: '1886', text: 'A document in the Bellary Diocesan archives recorded the traditional account of the beginnings of Christianity in Ramadurgam.' },
+  { year: '1895–1906', text: 'Fr. C. Thomas, a native of Ramadurgam, served as priest and later retired in the village.' },
+  { year: '1930', text: 'St. Paul’s RCM TM School is recorded among the parish institutions.' },
+  { year: '1972', text: 'According to the supplied historical account, Fr. Vermeulen built the present church.' },
+  { year: '14 Sep 1994', text: 'Bishop Johannes erected the Cross on the hill.' },
+  { year: '1996', text: 'Fathima Convent (FC) was established.' }
+];
+
+const formerPriests = [
+  'Fr. Jos Rajander', 'Fr. Goe Effer', 'Fr. M. Maximini', 'Fr. Ignatius',
+  'Fr. A. Doreyswamy', 'Fr. Ga Hermans', 'Fr. R.C. Paul', 'Fr. Gahanas',
+  'Fr. C. Thomas', 'Fr. P. Rayanna', 'Fr. S. Keet', 'Fr. Y. Schipper',
+  'Fr. Joseph', 'Fr. Staffhorest', 'Fr. Francis', 'Fr. Gerold Seariesbrick',
+  'Fr. Bede', 'Worhen', 'Fr. Cerigerneha', 'Fr. A. M. L. Pinto',
+  'Fr. Thomas Tharayil', 'Fr. Joannes Chrisostom', 'Fr. Anthony Kuttany',
+  'Fr. Y. Papaiah', 'Fr. Sebastian', 'Fr. K. Arulappa'
+];
+
+const navigation = [
+  { label: 'Home', href: '#top' },
+  { label: 'Our Parish', href: '#parish' },
+  { label: 'Mass Timings', href: '#mass' },
+  { label: 'Our History', href: '#history' },
+  { label: 'Feast Days', href: '#feasts' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'Contact', href: '#contact' }
+];
+
+function SectionHeading({ eyebrow, title, description, icon: Icon }) {
+  return (
+    <div className="section-heading">
+      <div className="section-heading-copy">
+        {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+        <h2>{title}</h2>
+        {description && <p>{description}</p>}
+      </div>
+      {Icon && <span className="section-heading-mark" aria-hidden="true"><Icon size={22} strokeWidth={1.6} /></span>}
+    </div>
+  );
 }
+
 function App() {
- const [menuOpen,setMenuOpen]=useState(false);
- const [activeSlide,setActiveSlide]=useState(0);
- useEffect(()=>{ const timer=window.setInterval(()=>setActiveSlide(current=>(current+1)%heroSlides.length),4500); return ()=>window.clearInterval(timer); },[]);
- const [query,setQuery]=useState('');
- const [allPriests,setAllPriests]=useState(false);
- const [historyOpen,setHistoryOpen]=useState(false);
- const [failedHistoryImages,setFailedHistoryImages]=useState([]);
- const historyImageNames=["1654392.jpg","1995543.jpg","2091324.jpg","2451125.jpg","2496710_orig.jpg","255316.jpg","311938.jpg","3352018.jpg","4166613.jpg","4694016.jpg","4863510.jpg","4982072.jpg","5205945_orig.jpg","5400008.jpg","5427702.jpg","5525601.jpg","6043522.jpg","6426274.jpg","6793393_orig.jpg","7238596.jpg","8570747.jpg","8994577.jpg","9456453.jpg","9851668.jpg"];
- const [notice,setNotice]=useState(true);
- const [newsFilter,setNewsFilter]=useState('All');
- const matches=formerPriests.filter(n=>n.toLowerCase().includes(query.toLowerCase()));
- const links=[['Home','#top'],['Parish','#parish'],['Parish Timings','#mass'],['Weekly Updates','#updates'],['Achievements','#feasts'],['Obituary','#obituary'],['Gallery','#gallery']];
- return <div className="church-site" id="top">
-  <div className="utility-bar"><div className="site-wrap utility-inner"><span><Globe2 size={14}/> {parish.diocese}</span><span>{parish.place}</span><a href={'tel:+91'+parish.phone}><Phone size={14}/> +91 {parish.phone}</a></div></div>
-  <header className="site-header">
-   <div className="site-wrap brand-row">
-    <a className="site-brand" href="#top"><span className="brand-mark"><Church size={34}/><Cross size={14}/></span><span><strong>{parish.name}</strong><small>{parish.place}</small></span></a>
-    <div className="diocese-mark"><Church size={30}/><span><b>Diocese of</b><strong>{parish.diocese}</strong></span></div>
-    <button className="menu-toggle" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen?<X/>:<Menu/>}</button>
-   </div>
-   <nav className={'main-nav '+(menuOpen?'nav-open':'')}><div className="site-wrap nav-inner">{links.map(([label,href])=><a key={label} href={href} onClick={()=>setMenuOpen(false)}>{label}</a>)}<a className="nav-contact" href="#contact"><UserRound size={17}/> Contact</a></div></nav>
-  </header>
-  <main>
-   <section className="hero-section" id="parish"><div className="site-wrap hero-grid"><div className="hero-photo"><img key={heroSlides[activeSlide].image} src={heroSlides[activeSlide].image} alt={heroSlides[activeSlide].alt}/><button type="button" className="photo-next" onClick={()=>setActiveSlide(current=>(current+1)%heroSlides.length)} aria-label="Next church photo"><ChevronRight size={26}/></button><span className="photo-dots">{heroSlides.map((slide,index)=><button key={slide.image} type="button" className={index===activeSlide?"active":""} onClick={()=>setActiveSlide(index)} aria-label={`Show photo ${index+1}`}/>)}</span></div><div className="hero-copy"><p className="eyebrow">WELCOME TO OUR PARISH</p><h1>{parish.name}</h1><p className="hero-location"><MapPin size={17}/>{parish.place}</p><p className="hero-description">A parish community rooted in faith, prayer, education and service.</p><a className="gold-button" href="#history">Know History <ChevronRight size={16}/></a></div></div></section>
-   <div className="notice-strip"><div className="site-wrap notice-inner"><span className="notice-label">NOTICE</span><p>For special services and feast-day programmes, please contact the parish to confirm the latest schedule.</p><a href="#contact">Contact parish <ChevronRight size={15}/></a></div></div>
-   <div className="site-wrap page-content">
-    <div className="top-content-grid">
-     <Section title="Holy Mass Timing" icon={Clock3} id="mass" className="mass-section" action={{href:'#contact',label:'More Details'}}><table className="mass-table"><thead><tr><th>Day</th><th>Timing</th></tr></thead><tbody>{massTimes.map(([day,time])=><tr key={day}><td>{day}</td><td>{time}</td></tr>)}</tbody></table></Section>
-     <Section title="Quick Stats" icon={CalendarCheck} className="stats-section"><div className="stats-grid"><div><Church/><span><b>Parish</b><small>{parish.place}</small></span></div><div><CalendarDays/><span><b>Established</b><small>{parish.established}</small></span></div><div><Cross/><span><b>Patron</b><small>Our Lady of Assumption</small></span></div><div><Users/><span><b>Parish Priest</b><small>{parish.priest}</small></span></div><div><MapPin/><span><b>Address</b><small>{parish.place}</small></span></div><div><Phone/><span><b>Telephone</b><small>{parish.phone}</small></span></div><div><Mail/><span><b>Diocese</b><small>{parish.diocese}</small></span></div><div><CalendarCheck/><span><b>Main Feast</b><small>15 August</small></span></div></div></Section>
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [priestQuery, setPriestQuery] = useState('');
+  const [showAllPriests, setShowAllPriests] = useState(false);
+  const [showFullHistory, setShowFullHistory] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % photographs.length);
+    }, 6500);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [menuOpen]);
+
+  const visiblePriests = formerPriests.filter((name) =>
+    name.toLowerCase().includes(priestQuery.trim().toLowerCase())
+  );
+  const priestsToShow = showAllPriests || priestQuery ? visiblePriests : visiblePriests.slice(0, 8);
+
+  const goToSlide = (direction) => {
+    setActiveSlide((current) => (current + direction + photographs.length) % photographs.length);
+  };
+
+  const closeMenu = () => setMenuOpen(false);
+
+  return (
+    <div className="site-shell" id="top">
+      <div className="utility-bar">
+        <div className="container utility-inner">
+          <span><MapPin size={13} aria-hidden="true" /> {parish.place}</span>
+          <span className="utility-diocese">{parish.diocese}</span>
+          <a href={parish.map} target="_blank" rel="noreferrer">Find us <ArrowUpRight size={13} aria-hidden="true" /></a>
+        </div>
+      </div>
+
+      <header className="site-header">
+        <div className="container header-main">
+          <a className="brand" href="#top" aria-label="Our Lady of Assumption Church home" onClick={closeMenu}>
+            <span className="brand-emblem"><Cross size={27} strokeWidth={1.55} aria-hidden="true" /></span>
+            <span className="brand-copy">
+              <span className="brand-kicker">A COMMUNITY OF FAITH</span>
+              <span className="brand-name">Our Lady of Assumption</span>
+              <span className="brand-location">CHURCH · RAMADURGAM</span>
+            </span>
+          </a>
+          <a className="header-contact" href={'tel:' + parish.phone}>
+            <span className="header-contact-icon"><Phone size={17} aria-hidden="true" /></span>
+            <span><small>Parish office</small><strong>{parish.phone}</strong></span>
+          </a>
+          <button className="menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={23} /> : <Menu size={23} />}
+          </button>
+        </div>
+        <nav id="primary-navigation" className={'primary-navigation' + (menuOpen ? ' is-open' : '')} aria-label="Main navigation">
+          <div className="container nav-inner">
+            {navigation.map((item) => (
+              <a key={item.href} href={item.href} onClick={closeMenu}>{item.label}</a>
+            ))}
+            <a className="nav-visit" href={parish.map} target="_blank" rel="noreferrer" onClick={closeMenu}>Plan a visit <ArrowUpRight size={15} aria-hidden="true" /></a>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <section className="hero" aria-label="Welcome to Our Lady of Assumption Church">
+          <div className="hero-photo" aria-hidden="true">
+            {photographs.map((photo, index) => (
+              <img key={photo.src} src={photo.src} alt="" className={index === activeSlide ? 'is-active' : ''} />
+            ))}
+          </div>
+          <div className="hero-shade" />
+          <div className="container hero-content">
+            <div className="hero-copy">
+              <span className="hero-overline"><span /> WELCOME TO OUR PARISH</span>
+              <h1>A home for faith.<br /><em>A place to belong.</em></h1>
+              <p>Rooted in tradition and united in faith, we welcome you to the spiritual home of Our Lady of Assumption in Ramadurgam.</p>
+              <div className="hero-actions">
+                <a className="button button-gold" href="#mass">Mass timings <ArrowUpRight size={17} aria-hidden="true" /></a>
+                <a className="button button-outline" href="#parish">Discover our parish <ArrowDown size={16} aria-hidden="true" /></a>
+              </div>
+              <div className="hero-caption"><span className="hero-caption-line" /> {photographs[activeSlide].label}</div>
+            </div>
+            <div className="hero-controls" aria-label="Church photographs">
+              <button type="button" aria-label="Previous photograph" onClick={() => goToSlide(-1)}><ChevronLeft size={19} /></button>
+              <span className="slide-count"><strong>0{activeSlide + 1}</strong><span />0{photographs.length}</span>
+              <button type="button" aria-label="Next photograph" onClick={() => goToSlide(1)}><ChevronRight size={19} /></button>
+            </div>
+          </div>
+          <a className="hero-scroll" href="#parish"><span>SCROLL TO EXPLORE</span><ArrowDown size={15} aria-hidden="true" /></a>
+        </section>
+
+        <section className="intro-section section-pad" id="parish">
+          <div className="container intro-grid">
+            <div className="intro-copy">
+              <span className="eyebrow">FAITH · COMMUNITY · HERITAGE</span>
+              <h2>A parish with a story.<br /><em>A community with heart.</em></h2>
+              <p>Our Lady of Assumption Church is a place of prayer, worship and community in Ramadurgam, Andhra Pradesh. Generations have gathered here to celebrate their faith and carry its traditions forward.</p>
+              <a className="text-link" href={parish.archive} target="_blank" rel="noreferrer">Explore the historical account <ArrowUpRight size={16} aria-hidden="true" /></a>
+            </div>
+            <div className="parish-facts">
+              <div className="fact-item"><span className="fact-icon"><HistoryIcon size={19} /></span><div><small>Established</small><strong>{parish.established}</strong><span>Parish heritage</span></div></div>
+              <div className="fact-item"><span className="fact-icon"><Heart size={19} /></span><div><small>Patron</small><strong>Our Lady of Assumption</strong><span>Our parish devotion</span></div></div>
+              <div className="fact-item"><span className="fact-icon"><CalendarDays size={19} /></span><div><small>Main feast</small><strong>15 August</strong><span>Assumption of Mary</span></div></div>
+              <div className="fact-item"><span className="fact-icon"><Church size={19} /></span><div><small>Parish priest</small><strong>{parish.priest}</strong><span>{parish.diocese}</span></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mass-section section-pad" id="mass">
+          <div className="container mass-layout">
+            <div className="mass-intro">
+              <span className="eyebrow">COME AND PRAY WITH US</span>
+              <h2>Make time<br /><em>for what matters.</em></h2>
+              <p>Join our parish community for Holy Mass. Please contact the parish office to confirm timings before travelling, especially on feast days and special occasions.</p>
+              <a className="button button-navy" href={'tel:' + parish.phone}><Phone size={16} aria-hidden="true" /> Confirm timings</a>
+              <div className="mass-note"><Clock3 size={16} aria-hidden="true" /><span>Timings may change for parish celebrations.</span></div>
+            </div>
+            <div className="mass-card">
+              <div className="mass-card-header"><div><span className="eyebrow">WEEKLY SCHEDULE</span><h3>Holy Mass timings</h3></div><span className="mass-card-symbol"><Cross size={23} /></span></div>
+              <div className="mass-list">
+                {massTimes.map(([day, time]) => (
+                  <div className={'mass-row' + (day === 'Sunday' ? ' mass-row-sunday' : '')} key={day}>
+                    <span className="mass-day">{day === 'Sunday' && <span className="sunday-dot" />}{day}</span>
+                    <span className="mass-time">{time}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mass-card-footer"><MapPin size={15} aria-hidden="true" /><span>Our Lady of Assumption Church, Ramadurgam</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="history-section section-pad" id="history">
+          <div className="container">
+            <SectionHeading eyebrow="A LEGACY OF FAITH" title="Remembering our roots" description="Milestones from the historical account of Christianity and parish life in Ramadurgam." icon={BookOpen} />
+            <div className="timeline">
+              {(showFullHistory ? timeline : timeline.slice(0, 5)).map((item) => (
+                <article className="timeline-item" key={item.year}>
+                  <div className="timeline-year">{item.year}</div>
+                  <span className="timeline-dot" aria-hidden="true" />
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="history-actions">
+              <button className="button button-light" type="button" onClick={() => setShowFullHistory(!showFullHistory)}>{showFullHistory ? 'Show fewer milestones' : 'Explore all milestones'} <ChevronRight className={showFullHistory ? 'rotate-icon' : ''} size={16} aria-hidden="true" /></button>
+              <a className="text-link" href={parish.archive} target="_blank" rel="noreferrer">Read the source account <ExternalLink size={15} aria-hidden="true" /></a>
+            </div>
+            <p className="source-note">Historical dates and descriptions are presented from the parish account linked above; some details may require archival verification.</p>
+          </div>
+        </section>
+
+        <section className="feasts-section section-pad" id="feasts">
+          <div className="container">
+            <SectionHeading eyebrow="OUR PARISH CALENDAR" title="Days we hold dear" description="Feast days and celebrations that are part of our parish tradition." icon={CalendarDays} />
+            <div className="feast-grid">
+              {feastDays.map((feast) => (
+                <article className="feast-card" key={feast.title}>
+                  <div className="feast-date"><span>{feast.month}</span><strong>{feast.day}</strong></div>
+                  <div className="feast-copy"><span className="feast-tag">{feast.note}</span><h3>{feast.title}</h3></div>
+                  <Cross className="feast-cross" size={19} aria-hidden="true" />
+                </article>
+              ))}
+            </div>
+            <p className="source-note">Dates shown are recurring feast dates, not a confirmed schedule of upcoming parish events. Please contact the parish for celebration times.</p>
+          </div>
+        </section>
+
+        <section className="gallery-section section-pad" id="gallery">
+          <div className="container">
+            <SectionHeading eyebrow="A GLIMPSE OF OUR HOME" title="The church & its surroundings" description="A few views of Our Lady of Assumption Church and the landscape of Ramadurgam." icon={Images} />
+            <div className="gallery-grid">
+              {photographs.map((photo, index) => (
+                <figure className={'gallery-item gallery-item-' + (index + 1)} key={photo.src}>
+                  <img src={photo.src} alt={photo.alt} loading="lazy" />
+                  <figcaption><span>0{index + 1}</span>{photo.label}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="priests-section section-pad" id="parish-priests">
+          <div className="container priests-layout">
+            <div className="priests-intro">
+              <span className="eyebrow">SERVING OUR COMMUNITY</span>
+              <h2>Remembering those<br /><em>who have served.</em></h2>
+              <p>With gratitude, we preserve the names recorded in the parish's existing list of former priests. Historical spellings are retained as supplied and may need confirmation.</p>
+              <div className="priest-count"><span>{formerPriests.length.toString().padStart(2, '0')}</span><small>names in the current list</small></div>
+            </div>
+            <div className="priests-panel">
+              <label className="search-field"><Search size={17} aria-hidden="true" /><span className="sr-only">Search former priests</span><input type="search" value={priestQuery} onChange={(event) => setPriestQuery(event.target.value)} placeholder="Search names..." /></label>
+              {priestsToShow.length ? <ol className="priest-list">{priestsToShow.map((name, index) => <li key={name}><span>{String(formerPriests.indexOf(name) + 1).padStart(2, '0')}</span>{name}</li>)}</ol> : <p className="empty-search">No names match “{priestQuery}”. Try another search.</p>}
+              {!priestQuery && visiblePriests.length > 8 && <button className="text-link priest-toggle" type="button" onClick={() => setShowAllPriests(!showAllPriests)}>{showAllPriests ? 'Show fewer names' : 'View all former priests'} <ChevronRight size={15} aria-hidden="true" /></button>}
+            </div>
+          </div>
+        </section>
+
+        <section className="contact-section" id="contact">
+          <div className="container contact-layout">
+            <div><span className="eyebrow">YOU ARE ALWAYS WELCOME</span><h2>Come as you are.<br /><em>There is a place for you.</em></h2><p>For Mass timings, parish information or a visit, please get in touch with the parish office.</p></div>
+            <div className="contact-actions">
+              <a className="button button-gold" href={parish.map} target="_blank" rel="noreferrer"><Compass size={17} aria-hidden="true" /> Get directions <ArrowUpRight size={16} aria-hidden="true" /></a>
+              <a className="contact-phone" href={'tel:' + parish.phone}><Phone size={17} aria-hidden="true" /><span><small>Call the parish office</small><strong>{parish.phone}</strong></span></a>
+              <span className="contact-address"><MapPin size={16} aria-hidden="true" />{parish.place}</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <div className="container footer-main">
+          <a className="brand footer-brand" href="#top">
+            <span className="brand-emblem"><Cross size={24} strokeWidth={1.5} aria-hidden="true" /></span>
+            <span className="brand-copy"><span className="brand-name">Our Lady of Assumption</span><span className="brand-location">CHURCH · RAMADURGAM</span></span>
+          </a>
+          <p>A community gathered in faith, strengthened by hope, and united in love.</p>
+          <a className="footer-top" href="#top">Back to top <ArrowUpRight size={15} aria-hidden="true" /></a>
+        </div>
+        <div className="container footer-bottom"><span>© {new Date().getFullYear()} Our Lady of Assumption Church, Ramadurgam</span><span>Faith · Heritage · Community</span></div>
+      </footer>
     </div>
-    <Section title="Liturgical Bible Reading" icon={BookOpen} id="readings" className="reading-section"><div className="reading-feature"><div className="reading-tabs"><a className="active" href="https://www.vaticannews.va/en/word-of-the-day.html" target="_blank" rel="noreferrer">English</a><a href="https://www.vaticannews.va/" target="_blank" rel="noreferrer">Daily Word</a><span>{new Date().toLocaleDateString('en-IN')}</span></div><div className="reading-card"><div className="reading-card-head"><Cross size={25}/><span><strong>Daily Scripture Reading</strong><small>Prayer, reflection and the Word of God</small></span></div><div className="reading-card-body"><p>Explore the daily readings and reflect on the message of the Gospel.</p><a className="gold-button" href="https://www.vaticannews.va/en/word-of-the-day.html" target="_blank" rel="noreferrer">Read Today's Word <ChevronRight size={15}/></a></div></div></div></Section>
-    <Section title="Parish Administration" icon={Users} id="administration" className="administration-section"><div className="admin-card"><div className="admin-portrait"><img src={parish.image} alt="Our parish church"/><span>PARISH</span></div><div className="admin-info"><h3>{parish.priest}</h3><small className="role-label">Parish Priest</small><p>{parish.name}</p><div className="admin-facts"><div><Church/><span><b>Diocese</b><small>{parish.diocese}</small></span></div><div><CalendarDays/><span><b>Established</b><small>{parish.established}</small></span></div><div><MapPin/><span><b>Address</b><small>{parish.place}</small></span></div><div><Phone/><span><b>Phone</b><small>{parish.phone}</small></span></div></div><a className="gold-button" href={'tel:+91'+parish.phone}>Contact Parish <ChevronRight size={15}/></a></div></div></Section>
-    <Section title="Parish History" icon={History} id="history" action={{href:parish.archive,label:'Photo Archive'}}><div className="history-feature"><div className="history-intro"><p>A document in the Bellary Diocesan archives dated 1886 preserves the traditional account of the beginnings of Christianity in Ramadurgam. According to this tradition, Minumula Nagappa and Chinna Nagappa travelled from Adoni to Raichur to buy jowar seeds, where they encountered the Christian faith. They later moved to Ramadurgam and built a church.</p><p>Ramadurgam appears in the Goan register of 1780 with a church dedicated to St. Anne. These archival photographs preserve scenes of local life, community work and the historical setting connected with the parish’s past.</p><button className="text-button" onClick={()=>setHistoryOpen(!historyOpen)}>{historyOpen?'Hide timeline':'View historical timeline'} <ChevronRight size={15}/></button></div></div><div className="history-photo-grid">{historyImageNames.map((name,index)=>failedHistoryImages.includes(name)?null:<figure key={name}><img src={`/history/${name}`} alt={`Historical photograph of Ramadurgam, image ${index+1}`} loading="lazy" onError={()=>setFailedHistoryImages(current=>current.includes(name)?current:[...current,name])}/><figcaption>Historical archive · {index+1}</figcaption></figure>)}{failedHistoryImages.length===historyImageNames.length&&<p className="history-empty">No history photographs are available yet. Upload your image files into the <code>public/history/</code> folder on GitHub, keeping the filenames expected by the gallery.</p>}</div></Section>
-    <Section title="News & Updates" icon={Newspaper} id="updates" action={{href:'#updates',label:'More Updates'}} className="news-section"><div className="news-filters">{['All','Parish','Diocese'].map(f=><button key={f} className={newsFilter===f?'selected':''} onClick={()=>setNewsFilter(f)}>{f}</button>)}</div><div className="news-grid"><article className="news-card"><img src={parish.image} alt="Parish church"/><div className="news-card-copy"><time><b>15</b><span>AUG</span></time><div><small>{newsFilter==='All'?'PARISH':newsFilter.toUpperCase()}</small><h3>Feast of the Assumption of the Blessed Virgin Mary</h3><p>Join the parish community for prayer and celebration.</p><a href="#feasts">Learn more <ChevronRight size={14}/></a></div></div></article><article className="news-card"><img src={parish.image} alt="Church and parish community"/><div className="news-card-copy"><time><b>26</b><span>JUL</span></time><div><small>{newsFilter==='All'?'COMMUNITY':newsFilter.toUpperCase()}</small><h3>Faith, fellowship and parish life</h3><p>Updates will be published when confirmed by the parish.</p><a href="#community">Explore parish life <ChevronRight size={14}/></a></div></div></article><article className="news-card"><img src={parish.image} alt="Church grounds"/><div className="news-card-copy"><time><b>25</b><span>DEC</span></time><div><small>{newsFilter==='All'?'LITURGICAL':newsFilter.toUpperCase()}</small><h3>Christmas celebration</h3><p>Check with the parish for service times and programmes.</p><a href="#mass">Mass timings <ChevronRight size={14}/></a></div></div></article></div></Section>
-    <div className="feature-links" id="institutes"><article><div className="feature-icon"><School/></div><div><h3>Catechesis & Education</h3><p>Faith formation and learning for children and adults.</p><a href="#institutes">Parish institutions <ChevronRight size={14}/></a></div></article><article><div className="feature-icon"><Heart/></div><div><h3>Community & Service</h3><p>Faith, fellowship and service to the local community.</p><a href="#community">Explore community <ChevronRight size={14}/></a></div></article></div>
-    <div className="lower-grid">
-     <Section title="Eparchial Priests" icon={Users} id="priests"><div className="empty-state"><Users/><p>Priest listings will be added when verified details are available.</p></div></Section>
-     <Section title="Former Priests" icon={History} id="former-priests"><div className="priest-search"><Search size={16}/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search former priests"/></div><div className="former-priest-list">{matches.slice(0,allPriests?matches.length:6).map((n,i)=><div key={n+i}><UserRound size={15}/>{n}</div>)}</div>{!query&&<button className="text-button" onClick={()=>setAllPriests(!allPriests)}>{allPriests?'Show fewer':'View all former priests'} <ChevronRight size={15}/></button>}{query&&matches.length===0&&<p>No matching names found.</p>}</Section>
-     <Section title="Feast Days & Important Days" icon={CalendarDays} id="feasts"><div className="feast-list">{feasts.map(f=><div className="feast-row" key={f.title}><span><small>{f.month}</small><b>{f.day}</b></span><div><strong>{f.title}</strong><small>{f.note}</small></div></div>)}</div></Section>
-     <Section title="Parish Obituary" icon={Heart} id="obituary"><div className="empty-state"><Heart/><p>Obituary notices will be shared here when details are provided by the parish.</p></div></Section>
-     <Section title="Parish Gallery" icon={Images} id="gallery" action={{href:parish.archive,label:'View Gallery'}}><a className="gallery-link" href={parish.archive} target="_blank" rel="noreferrer"><img src={parish.image} alt="Our Lady of Assumption Church"/><span>Church photographs <ChevronRight size={15}/></span></a></Section>
-     <Section title="Contact Parish" icon={MapPin} id="contact"><div className="contact-details"><p><MapPin/> {parish.place}</p><p><Phone/> <a href={'tel:+91'+parish.phone}>{parish.phone}</a></p><p><Mail/> {parish.diocese}</p><a className="gold-button" href={parish.map} target="_blank" rel="noreferrer"><Navigation size={15}/> Get Directions</a></div></Section>
-    </div>
-   </div>
-  </main>
-  <footer className="site-footer"><div className="site-wrap footer-grid"><div className="footer-about"><a className="site-brand footer-brand" href="#top"><span className="brand-mark"><Church size={30}/><Cross size={13}/></span><span><strong>{parish.name}</strong><small>{parish.place}</small></span></a><p>A parish community rooted in faith, prayer, education and service.</p></div><div><h3>Quick Links</h3><a href="#history">Parish History</a><a href="#mass">Holy Mass Timings</a><a href="#administration">Administration</a><a href="#feasts">Feast Days</a></div><div><h3>Parish Community</h3><a href="#updates">News & Updates</a><a href="#institutes">Institutions</a><a href="#gallery">Gallery</a><a href="#obituary">Obituary</a></div><div><h3>Contact</h3><p>{parish.place}</p><a href={'tel:+91'+parish.phone}><Phone size={14}/> +91 {parish.phone}</a><a href={parish.map} target="_blank" rel="noreferrer"><MapPin size={14}/> Find us on the map</a></div></div><div className="footer-bottom"><div className="site-wrap"><span>© {new Date().getFullYear()} {parish.name}, Ramadurgam</span><a href="#top">Back to top ↑</a></div></div></footer>
- </div>;
+  );
 }
+
 export default App;

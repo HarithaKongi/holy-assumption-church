@@ -1,53 +1,60 @@
 # Our Lady of Assumption Church — Ramadurgam
 
-A digital home for **Our Lady of Assumption Church in Ramadurgam, Andhra Pradesh** — created to share our church's faith, heritage, traditions, and community with people around the world.
+A responsive parish website for **Our Lady of Assumption Church, Ramadurgam, Andhra Pradesh**, with parish information, Holy Mass timings, a historical timeline, recurring feast dates, church photographs and contact links.
 
-This project aims to make the story of our parish accessible to everyone, wherever they are. With a welcoming design and a responsive experience across phones, tablets, and desktops, the website celebrates the people, places, and traditions that make our church special.
+## Run locally
 
-## ✨ What you'll find
-
-- **Our Story** — explore the parish's history and important milestones.
-- **Parish Life** — learn about prayer, devotions, fellowship, and community activities.
-- **Gallery** — discover memories and scenes connected with our church and Ramadurgam.
-- **Plan a Visit** — find the church location and visitor information.
-- **Responsive Design** — a clean, accessible experience on different screen sizes.
-
-## 🛠️ Built with
-
-- React
-- Vite
-- CSS
-- Lucide React icons
-- Google Fonts — Playfair Display and DM Sans
-
-## 🚀 Run locally
-
-Make sure [Node.js](https://nodejs.org/) is installed.
+Requirements: Node.js and npm.
 
 ```bash
-git clone https://github.com/HarithaKongi/holy-assumption-church.git
-cd holy-assumption-church
 npm install
 npm run dev
 ```
 
-Open the local URL printed in your terminal to view the website.
-
-To create and preview a production build:
+Create a production build with:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## 🌍 Our purpose
+## Built with
 
-This website is being built to share the story of Our Lady of Assumption Church, Ramadurgam, with the world — preserving its heritage, celebrating its faith, and helping people stay connected with the parish community.
+- React 18
+- Vite 6
+- Lucide React icons
+- CSS responsive layouts and reduced-motion support
 
-## 📌 Information note
+## Parish content and verification
 
-Parish schedules and contact details can change. Please confirm current Mass timings and contact information with the church before making a special trip. The website is a work in progress, and photographs and additional parish information will continue to be added.
+The site uses parish details and historical notes already present in the project. Historical dates and former-priest names are retained from the supplied list and should be checked against parish or diocesan records before being treated as definitive. Feast dates are recurring calendar dates, not confirmed upcoming event announcements. Mass times can change; visitors are encouraged to contact the parish before travelling.
 
----
+## Church photographs
 
-Made with care and faith for the Our Lady of Assumption Church community in Ramadurgam.
+The home-page carousel and gallery use the existing root-level image files:
+
+- `public/church-hill.jpg` (or root-served `/church-hill.jpg`)
+- `public/church-tower.jpg` (or root-served `/church-tower.jpg`)
+- `public/church-view.jpg` (or root-served `/church-view.jpg`)
+
+Keep these files at the project root if the current Vite setup serves them there, or move them to `public/` and keep the same URL paths.
+
+## Accessibility and responsive design
+
+- Semantic page sections and labelled navigation
+- Keyboard-accessible menu and carousel controls
+- Visible focus indicators
+- Searchable former-priest list
+- Reduced-motion preference support
+- Mobile, tablet and desktop layouts
+
+## Items to verify
+
+- Confirm current Holy Mass timings and parish contact number.
+- Verify historical timeline entries and former-priest name spellings.
+- Add official parish event announcements only when confirmed.
+- Confirm whether the existing parish archive URL remains authoritative.
+
+## License
+
+No license has been declared for this repository. Please contact the repository owner before reusing its content or photographs.
